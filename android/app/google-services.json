@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "54721437520",
+    "project_id": "master-task-mobile",
+    "storage_bucket": "master-task-mobile.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:54721437520:android:e6f2a68c229457752a1655",
+        "android_client_info": {
+          "package_name": "com.example.mastertask_mobile"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAOmdJd0ihwIbfSVgpbheEHR6oemiKaeoA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:54721437520:android:b426e6b7f212b0cd2a1655",
+        "android_client_info": {
+          "package_name": "com.mastertask.mobile"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAOmdJd0ihwIbfSVgpbheEHR6oemiKaeoA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
