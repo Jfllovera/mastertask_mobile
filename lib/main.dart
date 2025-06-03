@@ -1,16 +1,24 @@
-import 'package:flutter/material.dart';
-// Importa Firebase Core
-import 'package:firebase_core/firebase_core.dart';
-// Importa las opciones generadas por FlutterFire CLI
-import 'firebase_options.dart'; // Asegúrate de que este archivo existe en tu carpeta lib/
+// lib/main.dart
 
-void main() async { // <--- Cambiado a async
-  // Asegúrate de que los bindings de Flutter estén inicializados ANTES de Firebase.initializeApp
+import 'package:flutter/material.dart';
+
+// Imports de Firebase
+import 'package:firebase_core/firebase_core.dart';
+import 'package:firebase_auth/firebase_auth.dart'; // Necesario para FirebaseAuth.instance
+import 'firebase_options.dart'; // Generado por FlutterFire CLI
+
+// Imports de tus pantallas (asegúrate de que la ruta sea correcta si usaste una subcarpeta "screens")
+import 'screens/login_screen.dart';
+import 'screens/registration_screen.dart';
+import 'screens/home_screen.dart';
+
+void main() async {
+  // Asegura la inicialización de los bindings de Flutter
   WidgetsFlutterBinding.ensureInitialized();
 
   // Inicializa Firebase
-  await Firebase.initializeApp( // <--- Añadido await
-    options: DefaultFirebaseOptions.currentPlatform, // Usa las opciones específicas de la plataforma actual
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
   );
 
   runApp(const MyApp());
@@ -19,65 +27,60 @@ void main() async { // <--- Cambiado a async
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
-  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      // Puedes cambiar el title si quieres, por ejemplo a 'MasterTask Mobile'
-      title: 'MasterTask Mobile Firebase', // <--- Cambiado para reflejar el proyecto
+      title: 'MasterTask Mobile',
       theme: ThemeData(
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
-        // Puedes quitar useMaterial3: true si no lo necesitas o si causa problemas con tu diseño.
-        // useMaterial3: true, // Comentado por si acaso, descomenta si lo usas.
+        useMaterial3: true, // Puedes ajustar esto según tus preferencias de diseño
+        
       ),
-      // Dejamos MyHomePage por ahora, pero puedes cambiarlo por tu pantalla principal real
-      home: const MyHomePage(title: 'Firebase Inicializado!'), // <--- Cambiado el título para verificar
+      debugShowCheckedModeBanner: false,
+      // El AuthWrapper ahora decide qué pantalla mostrar inicialmente
+      home: const AuthWrapper(),
+      // Opcional: Definir rutas nombradas para una navegación más limpia si lo necesitas más adelante
+      // Esto es útil si navegas desde lugares que no son directamente el AuthWrapper
+      routes: {
+        '/login': (context) => const LoginScreen(),
+        '/register': (context) => const RegistrationScreen(),
+        '/home': (context) => const HomeScreen(),
+      },
     );
   }
 }
 
-class MyHomePage extends StatefulWidget {
-  const MyHomePage({super.key, required this.title});
-  final String title;
-
-  @override
-  State<MyHomePage> createState() => _MyHomePageState();
-}
-
-class _MyHomePageState extends State<MyHomePage> {
-  int _counter = 0;
-
-  void _incrementCounter() {
-    setState(() {
-      _counter++;
-    });
-  }
+class AuthWrapper extends StatelessWidget {
+  const AuthWrapper({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Theme.of(context).colorScheme.inversePrimary,
-        title: Text(widget.title), // Mostrará "Firebase Inicializado!"
-      ),
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            const Text('Firebase debería estar funcionando.'), // <--- Mensaje cambiado
-            const Text('Has presionado el botón estas veces:'), // Manteniendo el contador
-            Text(
-              '$_counter',
-              style: Theme.of(context).textTheme.headlineMedium,
-            ),
-          ],
-        ),
-      ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: _incrementCounter,
-        tooltip: 'Increment',
-        child: const Icon(Icons.add),
-      ),
+    print("AuthWrapper: Construyendo..."); // Para ver cuándo se construye
+    return StreamBuilder<User?>(
+      stream: FirebaseAuth.instance.authStateChanges(),
+      builder: (context, snapshot) {
+        print("AuthWrapper StreamBuilder: Estado de conexión: ${snapshot.connectionState}");
+        if (snapshot.hasData) {
+          print("AuthWrapper StreamBuilder: Usuario detectado (snapshot.hasData): ${snapshot.data!.uid}");
+        } else {
+          print("AuthWrapper StreamBuilder: No hay usuario (snapshot.hasData es false o snapshot.data es null)");
+        }
+
+        if (snapshot.connectionState == ConnectionState.waiting) {
+          print("AuthWrapper StreamBuilder: Mostrando CircularProgressIndicator");
+          return const Scaffold(
+            body: Center(child: CircularProgressIndicator()),
+          );
+        }
+
+        if (snapshot.hasData) {
+          print("AuthWrapper StreamBuilder: Navegando a HomeScreen");
+          return const HomeScreen();
+        } else {
+          print("AuthWrapper StreamBuilder: Navegando a LoginScreen");
+          return const LoginScreen();
+        }
+      },
     );
   }
 }

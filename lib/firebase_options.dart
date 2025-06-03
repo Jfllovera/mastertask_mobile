@@ -67,6 +67,8 @@ class DefaultFirebaseOptions {
     messagingSenderId: '54721437520',
     projectId: 'master-task-mobile',
     storageBucket: 'master-task-mobile.firebasestorage.app',
+    androidClientId: '54721437520-1rgd40qvjrn9b4noacpho08lcks2asah.apps.googleusercontent.com',
+    iosClientId: '54721437520-e1hjj661tm778dc3adf57droodknmrt7.apps.googleusercontent.com',
     iosBundleId: 'com.example.mastertaskMobile',
   );
 
@@ -76,6 +78,8 @@ class DefaultFirebaseOptions {
     messagingSenderId: '54721437520',
     projectId: 'master-task-mobile',
     storageBucket: 'master-task-mobile.firebasestorage.app',
+    iosClientId: '54721437520-e1hjj661tm778dc3adf57droodknmrt7.apps.googleusercontent.com',
     iosBundleId: 'com.example.mastertaskMobile',
   );
+
 }

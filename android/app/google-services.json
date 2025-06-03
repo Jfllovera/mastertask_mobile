@@ -12,7 +12,20 @@
           "package_name": "com.example.mastertask_mobile"
         }
       },
-      "oauth_client": [],
+      "oauth_client": [
+        {
+          "client_id": "54721437520-1rgd40qvjrn9b4noacpho08lcks2asah.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.mastertask_mobile",
+            "certificate_hash": "e91e072461ba6ba709ce1f028725a720757f66a4"
+          }
+        },
+        {
+          "client_id": "54721437520-aqhag92e24i57d5ujhsk35mdr7bir3b5.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
       "api_key": [
         {
           "current_key": "AIzaSyAOmdJd0ihwIbfSVgpbheEHR6oemiKaeoA"
@@ -20,7 +33,19 @@
       ],
       "services": {
         "appinvite_service": {
-          "other_platform_oauth_client": []
+          "other_platform_oauth_client": [
+            {
+              "client_id": "54721437520-aqhag92e24i57d5ujhsk35mdr7bir3b5.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "54721437520-e1hjj661tm778dc3adf57droodknmrt7.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.mastertaskMobile"
+              }
+            }
+          ]
         }
       }
     },
@@ -31,7 +56,12 @@
           "package_name": "com.mastertask.mobile"
         }
       },
-      "oauth_client": [],
+      "oauth_client": [
+        {
+          "client_id": "54721437520-aqhag92e24i57d5ujhsk35mdr7bir3b5.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
       "api_key": [
         {
           "current_key": "AIzaSyAOmdJd0ihwIbfSVgpbheEHR6oemiKaeoA"
@@ -39,7 +69,19 @@
       ],
       "services": {
         "appinvite_service": {
-          "other_platform_oauth_client": []
+          "other_platform_oauth_client": [
+            {
+              "client_id": "54721437520-aqhag92e24i57d5ujhsk35mdr7bir3b5.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "54721437520-e1hjj661tm778dc3adf57droodknmrt7.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.mastertaskMobile"
+              }
+            }
+          ]
         }
       }
     }
